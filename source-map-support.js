@@ -154,6 +154,9 @@ retrieveMapHandlers.push(function(source) {
 });
 
 function mapSourcePosition(position) {
+  if (position.source.startsWith('file://')) {
+    position.source = position.source.substr(7);
+  }
   var sourceMap = sourceMapCache[position.source];
   if (!sourceMap) {
     // Call the (overrideable) retrieveSourceMap function to get the source map.
